@@ -4,12 +4,13 @@ namespace hutian.AI.PathFinding
 {
     public class Node2D : IHeapItem<Node2D>
     {
-        public int gCost, hCost;
-        public bool obstacle;
-        public Vector3 worldPosition;
+        public int gCost; //从起点到当前节点的代价
+        public int hCost; //从当前格子到节点的代价(预估代价)
+        public bool obstacle; //当前节点是否是障碍物
+        public Vector3 worldPosition; //当前节点所在的世界坐标
 
-        public int GridX, GridY;
-        public Node2D parent;
+        public int GridX, GridY; //节点在二维网格中的坐标
+        public Node2D parent;   //父节点，根据父节点回溯到起点从而找到路径
 
         private int heapIndex;
 
@@ -21,7 +22,7 @@ namespace hutian.AI.PathFinding
             GridY = _gridY;
         }
 
-        public int FCost
+        public int FCost //节点的总代价
         {
             get
             {
@@ -39,9 +40,8 @@ namespace hutian.AI.PathFinding
         public int CompareTo(Node2D nodeToCompare)
         {
             int compare = FCost.CompareTo(nodeToCompare.FCost);
-
-            //If they are equal, use the one that is the closest
-            //Will return 1, 0 or -1, so 0 means the f costs are the same
+            
+            //总代价相同，比较预估代价(选择离终点更近的节点)
             if (compare == 0)
             {
                 compare = hCost.CompareTo(nodeToCompare.hCost);
@@ -50,9 +50,9 @@ namespace hutian.AI.PathFinding
             return -compare;
         }
 
-        public void SetObstacle(bool isOb)
+        public void SetObstacle(bool isObstacle)
         {
-            obstacle = isOb;
+            obstacle = isObstacle;
         }
     }
 
