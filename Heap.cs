@@ -91,7 +91,7 @@ namespace hutian.AI.PathFinding
         public void UpdateItem(T item)
         {
             //This is for pathfinding so we only need to add better nodes and thus only need to sort up
-            SortUp(item);
+            SortUp(item); //更新后节点的总代价一定比之前更小，所以做上浮操作
         }
 
 
@@ -130,7 +130,7 @@ namespace hutian.AI.PathFinding
                     if (childIndexRight < currentItemCount)
                     {
                         //Compare the left and the right node, to find if we should swap with the left or the right node
-                        if (items[childIndexLeft].CompareTo(items[childIndexRight]) < 0)
+                        if (items[childIndexLeft].CompareTo(items[childIndexRight]) < 0)//右子节点比左子节点更小，那么交换父元素与右子节点
                         {
                             swapIndex = childIndexRight;
                         }

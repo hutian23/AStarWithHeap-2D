@@ -7,12 +7,12 @@ namespace hutian.AI.PathFinding
 {
     public class Grid2D : MonoBehaviour
     {
-        public Vector3 gridWorldSize;
-        public float nodeRadius;
+        public Vector3 gridWorldSize; //二维网格的大小
+        public float nodeRadius;//节点半径
         public Node2D[,] Grid;
-        public Tilemap obstaclemap;
-        public List<Node2D> path;
-        Vector3 worldBottomLeft;
+        public Tilemap obstaclemap; //障碍物所在tilemap
+        public List<Node2D> path; 
+        Vector3 worldBottomLeft;//网格的左下角
 
         float nodeDiameter;
         public int gridSizeX, gridSizeY;

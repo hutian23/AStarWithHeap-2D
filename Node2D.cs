@@ -2,7 +2,7 @@
 
 namespace hutian.AI.PathFinding
 {
-    public class Node2D : IHeapItem<Node2D>
+    public class Node2D/* : IHeapItem<Node2D>*/:IComparable<Node2D>
     {
         public int gCost; //从起点到当前节点的代价
         public int hCost; //从当前格子到节点的代价(预估代价)
@@ -12,7 +12,7 @@ namespace hutian.AI.PathFinding
         public int GridX, GridY; //节点在二维网格中的坐标
         public Node2D parent;   //父节点，根据父节点回溯到起点从而找到路径
 
-        private int heapIndex;
+        //private int heapIndex;
 
         public Node2D(bool _obstacle, Vector3 _worldPos, int _gridX, int _gridY)
         {
@@ -31,11 +31,11 @@ namespace hutian.AI.PathFinding
 
         }
 
-        public int HeapIndex
-        {
-            get => heapIndex;
-            set => heapIndex = value;
-        }
+        //public int HeapIndex
+        //{
+        //    get => heapIndex;
+        //    set => heapIndex = value;
+        //}
 
         public int CompareTo(Node2D nodeToCompare)
         {
