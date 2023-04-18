@@ -39,27 +39,15 @@ namespace hutian.AI.PathFinding
             targetNode = grid.NodeFromWorldPoint(targetPos);
 
             Heap<Node2D> openSet = new Heap<Node2D>(grid.gridSizeX*grid.gridSizeY);
-            //List<Node2D> openSet = new List<Node2D>();
             HashSet<Node2D> closedSet = new HashSet<Node2D>();
             openSet.Add(seekerNode);
 
             //calculates path for pathfinding
             while (openSet.Count > 0)
             {
-                Debug.Log(openSet.Count);
                 //iterates through openSet and finds lowest FCost
-                //Node2D node = openSet[0];
                 Node2D node = openSet.RemoveFirst();
-                //for (int i = 1; i < openSet.Count; i++)
-                //{
-                //    if (openSet[i].FCost <= node.FCost)
-                //    {
-                //        if (openSet[i].hCost < node.hCost)
-                //            node = openSet[i];
-                //    }
-                //}
 
-                //openSet.Remove(node);
                 closedSet.Add(node);
 
                 //If target found, retrace path
@@ -120,19 +108,6 @@ namespace hutian.AI.PathFinding
             if (dstX > dstY)
                 return 14 * dstY + 10 * (dstX - dstY);
             return 14 * dstX + 10 * (dstY - dstX);
-        }
-
-        public void OnDrawGizmos()
-        {
-            if (!Application.isPlaying) return;
-            //Vector3 start =new Vector3(Mathf.RoundToInt(seeker.transform.position.x),Mathf.RoundToInt(seeker.transform.position.y));
-            //Vector3 end = new Vector3(Mathf.RoundToInt(target.transform.position.x), Mathf.RoundToInt(target.transform.position.y));
-            seekerNode = grid.NodeFromWorldPoint(seeker.transform.position);
-            targetNode = grid.NodeFromWorldPoint(target.transform.position);
-            Gizmos.color = Color.blue;
-            Gizmos.DrawWireCube(seekerNode.worldPosition, Vector3.one *grid.nodeRadius);
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireCube(targetNode.worldPosition, Vector3.one * grid.nodeRadius);
         }
     }
 }
